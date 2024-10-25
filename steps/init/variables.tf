@@ -1,4 +1,9 @@
 
+variable "asset_bucket" {
+  description = "Name of the asset bucket."
+  type        = string
+}
+
 variable "panda_name" {
   description = "My Panda Name"
   type        = string
@@ -22,4 +27,6 @@ locals {
 
   vpc_cidr_range     = "10.${local.panda_number + local.cidr_offset}.0.0/16"
   subnet_cidr_ranges = [for i in range(length(data.aws_availability_zones.available_azs.names)) : "10.${local.panda_number + local.cidr_offset}.${i}.0/24"]
+
+  account_id = data.aws_caller_identity.current.account_id
 }

@@ -1,3 +1,13 @@
+output "asset_bucket_arn" {
+  description = "ARN of the asset bucket."
+  value       = aws_s3_bucket.playground_assets.arn
+}
+
+output "asset_bucket_name" {
+  description = "name of the asset bucket."
+  value       = aws_s3_bucket.playground_assets.id
+}
+
 output "public_subnet_details" {
   description = "Details of the public subnets."
   value       = module.vpc.public_subnet_details
@@ -27,3 +37,4 @@ output "vpc_id" {
   description = "ID of the VPC."
   value       = module.vpc.vpc_id
 }
+
