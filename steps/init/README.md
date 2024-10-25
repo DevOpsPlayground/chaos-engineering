@@ -31,9 +31,10 @@ Most of the terraform files in this workshop use the same variables, so we'll cr
 
 ```hcl
 panda_name = "<some_panda_name>"
+asset_bucket = "<asset_bucket_name>"
 ```
 
-If you're running this as part of the live session, replace `<some_panda_name>` with the name we'll provide you with, otherwise feel free to use your own name, or similar.
+If you're running this as part of the live session, replace `<some_panda_name>` with the name we'll provide you with and `<asset_bucket>` with `630895193694-eu-west-2-oct-assets`, otherwise feel free to use your own details, or similar.
 
 
 ## Deploying the infrastructure
