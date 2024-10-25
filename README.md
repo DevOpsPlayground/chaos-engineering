@@ -19,7 +19,7 @@ This month we're going to explore the world of chaos engineering, using Amazon's
 1. If you're following along in your own time, you'll need:
     * An AWS account
     * Terraform installed
-
+1. The AWS account must contain an S3 bucket that will be used to store asset files.
 
 
 ## Live workshop environments
