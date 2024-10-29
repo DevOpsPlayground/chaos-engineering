@@ -3,11 +3,13 @@ variable "panda_name" {
   type        = string
 }
 
+
 variable "region" {
   description = "AWS Region for deployment."
   type        = string
   default     = "eu-west-2"
 }
+
 
 
 locals {
@@ -17,10 +19,5 @@ locals {
 
   resource_suffix = "${var.panda_name}_${local.playground_name}"
 
-  cidr_offset = 100
-
-  vpc_cidr_range     = "10.${local.panda_number + local.cidr_offset}.0.0/16"
-  subnet_cidr_ranges = [for i in range(length(data.aws_availability_zones.available_azs.names)) : "10.${local.panda_number + local.cidr_offset}.${i}.0/24"]
-
-  # account_id = data.aws_caller_identity.current.account_id
+  experiment = "step01"
 }
