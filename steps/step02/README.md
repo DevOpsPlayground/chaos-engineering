@@ -19,7 +19,7 @@ This step will be similar to the previous one, but we need to make sure we're in
 something like:
 
 ```
-pply complete! Resources: 6 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 
 Outputs:
 
@@ -70,10 +70,12 @@ Now we have our new template, let's run the experiment. Click on `Start experime
 If we review the instance page in the EC2 console, we'll see that the instance is stopping. If we refresh the load balancer page, we'll see that the page is no longer available. After a few
 minutes, the health checks on the auto-scaling group will fail, and a new instance will be started. If we refresh the load balancer page again, we'll see that the page is available again.
 
+## Cleaning up
+Once you've completed the experiment, you can clean up the resources by running the command `terraform destroy --auto-approve --var-file ../common/common.tfvars`. This will remove the resources we've created in this step.
 
 <br />
 <br />
 
 ---
-Now, please proceed to [step 2 README](../step02/README.md), or
+Now, please proceed to [step 3 README](../step03/README.md), or
 Back to the main [README](../../README.md) file

@@ -1,6 +1,6 @@
 resource "aws_elb" "this" {
-  name            = replace("${local.experiment}-${var.panda_name}-elb", "_", "-")
-  subnets         = data.terraform_remote_state.base_config.outputs.public_subnet_ids
+  name    = replace("${local.experiment}-${var.panda_name}-elb", "_", "-")
+  subnets = data.terraform_remote_state.base_config.outputs.public_subnet_ids
 
   security_groups = [data.terraform_remote_state.base_config.outputs.vpc_security_group_id]
 
@@ -13,8 +13,8 @@ resource "aws_elb" "this" {
 
   health_check {
     target              = "HTTP:80/"
-    interval            = 30
-    timeout             = 5
+    interval            = 5
+    timeout             = 2
     healthy_threshold   = 2
     unhealthy_threshold = 2
   }

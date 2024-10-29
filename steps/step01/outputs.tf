@@ -8,13 +8,3 @@ output "ec2_details" {
     instance_az     = aws_instance.simple_ec2.availability_zone
   }
 }
-
-# output "subnet_details" {
-#   description = "Details of the public subnets."
-#   value       = data.terraform_remote_state.base_config.outputs.public_subnet_details
-# }
-
-# output "vpc_id" {
-#   description = "ID of the VPC."
-#   value       = data.terraform_remote_state.base_config.outputs.vpc_id
-# }
