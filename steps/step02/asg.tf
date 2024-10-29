@@ -24,8 +24,8 @@ resource "aws_launch_template" "this" {
     resource_type = "instance"
     tags = {
       Name       = "${var.panda_name}-${local.experiment}"
-      Project  = "${local.resource_suffix}"
-      Panda = var.panda_name
+      Project    = "${local.resource_suffix}"
+      Panda      = var.panda_name
       Experiment = local.experiment
     }
   }
@@ -47,7 +47,7 @@ resource "aws_autoscaling_group" "this" {
 
   load_balancers = [aws_elb.this.id]
 
-  health_check_type          = "ELB"
+  health_check_type = "ELB"
 }
 
 locals {

@@ -26,7 +26,7 @@ resource "aws_iam_policy_attachment" "ec2_fis_policy_attachment" {
 resource "aws_iam_policy" "cloudwatch_logs_policy" {
   name        = "${var.panda_name}_cloudwatch_logs_policy"
   description = "Policy to allow CloudWatch log group and log stream access"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
@@ -36,7 +36,7 @@ resource "aws_iam_policy" "cloudwatch_logs_policy" {
           "logs:CreateLogDelivery",
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
-          "logs:PutLogEvents" 
+          "logs:PutLogEvents"
         ],
         Resource = [
           "*"

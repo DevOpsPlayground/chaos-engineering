@@ -1,6 +1,6 @@
 resource "aws_elb" "this" {
-  name            = replace("${local.experiment}-${var.panda_name}-elb", "_", "-")
-  subnets         = data.terraform_remote_state.base_config.outputs.public_subnet_ids
+  name    = replace("${local.experiment}-${var.panda_name}-elb", "_", "-")
+  subnets = data.terraform_remote_state.base_config.outputs.public_subnet_ids
 
   security_groups = [data.terraform_remote_state.base_config.outputs.vpc_security_group_id]
 

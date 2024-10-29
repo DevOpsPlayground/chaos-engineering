@@ -9,7 +9,7 @@ resource "aws_cloudwatch_metric_alarm" "lb_alarm" {
   threshold           = "10"
   alarm_description   = "This metric monitors the number of healthy hosts."
   datapoints_to_alarm = "2"
-  treat_missing_data = "notBreaching"
+  treat_missing_data  = "notBreaching"
 
   dimensions = {
     LoadBalancerName = "${aws_elb.this.name}"
