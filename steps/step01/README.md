@@ -2,6 +2,8 @@
 
 To get started, we'll need to deploy a simple server in AWS. We'll then use FIS to simulate a failure on this server.
 
+Please be aware that we're deliberately keeping this configuration simple to reduce costs and complexity. In a live environment, we'd use private subnets and NAT gateways.
+
 :warning: Before you start this step, make sure you've deployed the base infrastructure in the [init](../init/README.md) step.
 
 
@@ -35,21 +37,7 @@ ec2_details = {
   "instance_named_url" = "http://simple-funky.devopsplayground.org"
   "instance_subnet" = "subnet-0a1170859dd348b2b"
 }
-subnet_details = {
-  "subnet-091bafa95d412af09" = {
-    "availability_zone" = "eu-west-2b"
-    "cidr_block" = "10.100.1.0/24"
-  }
-  "subnet-0a1170859dd348b2b" = {
-    "availability_zone" = "eu-west-2a"
-    "cidr_block" = "10.100.0.0/24"
-  }
-  "subnet-0c2f0021f2a72b04b" = {
-    "availability_zone" = "eu-west-2c"
-    "cidr_block" = "10.100.2.0/24"
-  }
-}
-vpc_id = "vpc-0feb32b0ebc6f9d83"
+
 ```
 
 :information_source: Make a note of the `instance_id` in the output from your deployment as we'll need this shortly.
@@ -81,7 +69,7 @@ test against our account, so ensure that the `Account` option is selected, and c
 
 Next we'll define our experiment template with the following steps:
 
-1. Firstly, provide a description for the template, such as `Stop EC2 instance`, and add a name, something including your panda name at the end to make it easier to identify.
+1. Firstly, provide a description for the template, such as `Stop step01 EC2 instance`, and add a name, something including your panda name at the end to make it easier to identify.
 1. In the `Actions` section, click on the `Add action` button. This will open a new section where we can define the action. 
     1. In the name field, enter `stop-ec2`.
     1. Select `EC2` in the action type field, and then select `aws:ec2:stop-instances` in the action field. Depending on the action chosen, we'll see different options to complete. In this case, we're going to restart the server after 2 minutes.
@@ -92,7 +80,7 @@ Next we'll define our experiment template with the following steps:
     1. In the `Resource IDs` field, either scroll or search in the dropdown using the instance id we noted earlier.
     1. Ensure that the field `Selection mode` contains the value `All`.
     1. Click on the `Save` button.
-1. Scroll down and ensure that the `Create a new role for the experiment template` option is ticked.
+1. Scroll down and ensure that the `Use an existing IAM role` option is ticked, and choose the IAM role created in the init step (:exclamation: The role name should start with the `panda_name` value).
 1. Click on the `Create an experiment template` button, and in the warning field, enter `create` and then click the `Create an experiment template` button.
 
 With this done, we should be able to see the experiment we just created in the `Experiment templates` page in the AWS console at https://eu-west-2.console.aws.amazon.com/fis/home?region=eu-west-2#ExperimentTemplates, looking something like:
@@ -101,14 +89,21 @@ With this done, we should be able to see the experiment we just created in the `
 
 ## Running our first experiment
 We now have a template we can use to initiate an experiment. From the templates page in the console, 
-tick the box next to the template you just created and then click the `Start Experiment` button. For now, after this, just click on the `Start Experiment` button. We'll then be prompted to confirm we want to start the
-experiment, so enter `start` in the field and click the `Start Experiment` button.
+tick the box next to the template you just created and then click the `Start Experiment` button. For now, after this, just click on the `Start Experiment` button. We'll then be prompted to confirm we want to start the experiment, so enter `start` in the field and click the `Start Experiment` button.
 
 This will open the experiment page, where we can see the progress of the experiment. If you open the [EC2 instances page](https://eu-west-2.console.aws.amazon.com/ec2/home?region=eu-west-2#Instances) in a new tab, you should be able to find the instance, and after a short while see that it's stopped.
 
 If you try to open the URL for the instance, you should see that it's no longer available. So our experiment has demonstrated that we don't have a resilient infrastructure.
 
 If you remember, we set the experiment to restart the instance after 2 minutes. After this time, refresh the EC2 instances page, and check the public IP assigned to the instance and access the URL via that IP you should see that the instance is running again.
+
+If we open the `experiments` section in the AWS console, we can see our experiment listed with a state of `Completed`. If we click on the experiment id, we can re-open the experiment and review the details.
+
+Because we've created an experiment template, we can now run this experiment whenever we want to test the resilience of our infrastructure.
+
+## Cleaning up
+Once you've completed the experiment, you can clean up the resources by running the command `terraform destroy --auto-approve --var-file ../common/common.tfvars`. This will remove the resources we've created in this step.
+
 <br />
 <br />
 

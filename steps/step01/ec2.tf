@@ -14,8 +14,11 @@ resource "aws_instance" "simple_ec2" {
   }
 
   tags = {
-    Name = "simple-${var.panda_name}"
-    az   = data.aws_availability_zones.available_azs.names[0]
+    Name       = "simple-${var.panda_name}"
+    Panda      = var.panda_name
+    Experiment = "step01"
+    az         = data.aws_availability_zones.available_azs.names[0]
+    Project    = "${local.resource_suffix}"
   }
 }
 

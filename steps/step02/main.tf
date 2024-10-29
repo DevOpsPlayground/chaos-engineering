@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "local" {
-    path = "../../statefiles/step01_config.tfstate"
+    path = "../../statefiles/step02_config.tfstate"
   }
 }
 
@@ -18,7 +18,7 @@ provider "aws" {
     tags = {
       Project    = local.playground_name
       Panda      = var.panda_name
-      Experiment = local.experiment
+      experiment = local.experiment
     }
   }
 }
