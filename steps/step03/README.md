@@ -44,7 +44,7 @@ This time, for our alarm to generate an alert, we need to create traffic going t
 ```bash
 while :
 do
-    http_code=$(curl -s -o /dev/null -w "%{http_code}" http:_load_balancer_url_)
+    http_code=$(curl -s -o /dev/null -w "%{http_code}" http://step03-funky-elb-591817578.eu-west-2.elb.amazonaws.com)
     if [ $http_code -eq 200 ]; then
         printf "."
     else

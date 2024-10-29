@@ -33,7 +33,7 @@ Most of the terraform files in this workshop use the same variables, so we'll cr
 panda_name = "<some_panda_name>"
 ```
 
-If you're running this as part of the live session, replace `<some_panda_name>` with the name we'll provide you with and `<asset_bucket>` with `630895193694-eu-west-2-oct-assets`, otherwise feel free to use your own details, or similar.
+If you're running this as part of the live session, replace `<some_panda_name>` with the name we'll provide you with, otherwise feel free to use your own details, or similar.
 
 
 ## Deploying the infrastructure
@@ -41,7 +41,7 @@ Once you have a set of AWS credentials and you've setup the `common.tfvars` file
 
 Firstly, we need to initialise our Terraform environment by running the command `terraform init`. This will download the required providers and setup an environment ready to use.
 
-Once initialised, it's always good practice to check our Terraform code, and we can do this with the commands `teraform plan --var-file ../common/common.tfvars`. This will show us what Terraform is going to do.
+Once initialised, it's always good practice to check our Terraform code, and we can do this with the commands `terraform plan --var-file ../common/common.tfvars`. This will show us what Terraform is going to do.
 
 If the command runs ok, we can then apply the changes with `terraform apply --auto-approve --var-file ../common/common.tfvars`. This will create the infrastructure in the specified AWS account.
 
@@ -55,7 +55,7 @@ Outputs:
 fis_iam_role = "funky_fis_iam_role"
 fis_log_group = "/aws/fis/funky-fis-logs"
 ```
-:information_source: Make a note of the outputß values as we'll need these later.
+:information_source: Make a note of the output values as we'll need these later.
 
 ## Sharing the configuration with other steps
 To allow the following steps in the workshop to use configuration we've just created, we'll store the details in a Terraform statefile `statefiles/base_config.tfstate`.
