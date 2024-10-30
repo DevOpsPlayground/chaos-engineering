@@ -1,6 +1,7 @@
 .terraform
 *.tfstate*
-*tfvars
 *hcl
 
+.DS_Store
 
+iam
