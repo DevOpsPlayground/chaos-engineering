@@ -27,7 +27,7 @@ RUN cd /root/workdir && \
 
 # ~/.bashrc update
 RUN echo 'alias aws_creds="env | grep AWS"' >> ~/.bashrc && \
-    echo 'alias workdir="cd ~/workdir"' >> ~/.bashrc && \
+    echo 'alias workdir="cd ~/workdir"' >> ~/.bashrc 
 
 # Verify installations
 RUN terraform --version
