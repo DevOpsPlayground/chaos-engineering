@@ -25,6 +25,10 @@ RUN curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zi
 RUN cd /root/workdir && \
     git clone https://github.com/DevOpsPlayground/chaos-engineering
 
+# ~/.bashrc update
+RUN echo 'alias aws_creds="env | grep AWS"' >> ~/.bashrc && \
+    echo 'alias workdir="cd ~/workdir"' >> ~/.bashrc && \
+
 # Verify installations
 RUN terraform --version
 RUN aws --version
