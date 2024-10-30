@@ -85,7 +85,7 @@ locals {
     "tight",
     "uncommon"
   ]
-  panda_number    = index(local.panda_name_list, var.panda_name)
+  panda_number    = index(local.panda_name_list, replace(var.panda_name, "/-(test|panda)\\s*$$/", ""))
 
   resource_suffix = "${var.panda_name}_${local.playground_name}"
 
