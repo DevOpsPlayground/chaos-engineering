@@ -35,11 +35,8 @@ We'll be performing the following activities:
 
 ### Steps
 1. [Step 01](steps/step01/README.md) - first experiment with FIS, a simple single server setup.
-
+1. [Step 02](steps/step02/README.md) - second experiment, improving resilience.
+1. [Step 03](steps/step03/README.md) - third experiment, full resilience - test to destruction.
+1. [Step 04](steps/step04/README.md) - time permitting, a quick review of the safety level functionality.
 ---
 
-
-
-## Useful commands
-terraform plan --var-file ../common/common.tfvars
-terraform apply --auto-approve --var-file ../common/common.tfvars
