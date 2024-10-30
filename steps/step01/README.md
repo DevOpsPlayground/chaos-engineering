@@ -10,7 +10,7 @@ Please be aware that we're deliberately keeping this configuration simple to red
 ## Pre-requisites
 Before we go further with the step, we need to ensure that 
 1. We have some active AWS credentials,
-1. We have deployed the base inftastructure in the [init](../init/README.md) step.
+1. We have deployed the base infrastructure in the [init](../init/README.md) step.
 1. This deployment assumes there is a route53 hosted zone in place, pointing to the domain referenced in `variables.tf`. If you don't have a hosted zone/domain, ignore this and use the url with an IP, but be aware that the IP may change if the server is stopped and started again.
 
 ## Deploying an environment to test
@@ -18,7 +18,7 @@ To deploy the environment, we need to run the Terraform code in the `step01` dir
 
 Firstly, we need to initialise our Terraform environment by running the command `terraform init`. This will download the required providers and setup an environment ready to use.
 
-Once initialised, it's always good practice to check our Terraform code, and we can do this with the commands `teraform plan --var-file ../common/common.tfvars`. This will show us what Terraform is going to do.
+Once initialised, it's always good practice to check our Terraform code, and we can do this with the commands `terraform plan --var-file ../common/common.tfvars`. This will show us what Terraform is going to do.
 
 If the command runs ok, we can then apply the changes with `terraform apply --auto-approve --var-file ../common/common.tfvars`. This will create the infrastructure in the specified AWS account.
 
