@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "local" {
-    path = "../../statefiles/step02_config.tfstate"
+    path = "../../statefiles/step03_config.tfstate"
   }
 }
 
